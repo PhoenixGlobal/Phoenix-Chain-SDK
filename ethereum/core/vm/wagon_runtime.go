@@ -1012,7 +1012,7 @@ func Transfer(proc *exec.Process, dst uint32, amount uint32, len uint32) int32 {
 	if transfersValue {
 		gas += configs.CallValueTransferGas
 	}
-	gasTemp, err := callGas(ctx.contract.Gas, configs.TxGas, uint256.NewInt().SetUint64(ctx.contract.Gas))
+	gasTemp, err := callGas(ctx.contract.Gas, configs.TxGas, uint256.NewInt(0).SetUint64(ctx.contract.Gas))
 	if nil != err {
 		panic(err)
 	}
@@ -1270,7 +1270,7 @@ func CallContract(proc *exec.Process, addrPtr, args, argsLen, val, valLen, callC
 		gas += configs.CallValueTransferGas
 	}
 
-	gasTemp, err := callGas(ctx.contract.Gas, gas, uint256.NewInt().SetBytes(bCost.Bytes()))
+	gasTemp, err := callGas(ctx.contract.Gas, gas, uint256.NewInt(0).SetBytes(bCost.Bytes()))
 	if nil != err {
 		panic(err)
 	}
@@ -1342,7 +1342,7 @@ func DelegateCallContract(proc *exec.Process, addrPtr, params, paramsLen, callCo
 		bCost = new(big.Int).SetUint64(ctx.contract.Gas)
 	}
 
-	gasTemp, err := callGas(ctx.contract.Gas, ctx.gasTable.Calls, uint256.NewInt().SetBytes(bCost.Bytes()))
+	gasTemp, err := callGas(ctx.contract.Gas, ctx.gasTable.Calls, uint256.NewInt(0).SetBytes(bCost.Bytes()))
 	if nil != err {
 		panic(err)
 	}
@@ -1409,7 +1409,7 @@ func StaticCallContract(proc *exec.Process, addrPtr, params, paramsLen, callCost
 		bCost = new(big.Int).SetUint64(ctx.contract.Gas)
 	}
 
-	gasTemp, err := callGas(ctx.contract.Gas, ctx.gasTable.Calls, uint256.NewInt().SetBytes(bCost.Bytes()))
+	gasTemp, err := callGas(ctx.contract.Gas, ctx.gasTable.Calls, uint256.NewInt(0).SetBytes(bCost.Bytes()))
 	if nil != err {
 		panic(err)
 	}
@@ -1537,7 +1537,7 @@ func MigrateInnerContract(proc *exec.Process, newAddr, val, valLen, callCost, ca
 	if bValue.Sign() != 0 {
 		gas += configs.CallNewAccountGas
 	}
-	gasTemp, err := callGas(ctx.contract.Gas, gas, uint256.NewInt().SetBytes(bCost.Bytes()))
+	gasTemp, err := callGas(ctx.contract.Gas, gas, uint256.NewInt(0).SetBytes(bCost.Bytes()))
 	if nil != err {
 		panic(err)
 	}
@@ -2192,7 +2192,7 @@ func CreateContract(proc *exec.Process, newAddr, val, valLen, callCost, callCost
 	}
 
 	gas := configs.CallNewAccountGas
-	gasTemp, err := callGas(ctx.contract.Gas, gas, uint256.NewInt().SetBytes(costValue.Bytes()))
+	gasTemp, err := callGas(ctx.contract.Gas, gas, uint256.NewInt(0).SetBytes(costValue.Bytes()))
 	if nil != err {
 		panic(err)
 	}
