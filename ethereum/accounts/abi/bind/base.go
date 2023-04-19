@@ -4,13 +4,14 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/configs"
 	"math/big"
 
 	phoenixchain "github.com/PhoenixGlobal/Phoenix-Chain-SDK"
 
 	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/ethereum/accounts/abi"
-	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/libs/common"
 	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/ethereum/core/types"
+	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/libs/common"
 	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/libs/crypto"
 	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/libs/event"
 )
@@ -231,7 +232,7 @@ func (c *BoundContract) transact(opts *TransactOpts, contract *common.Address, i
 	if opts.Signer == nil {
 		return nil, errors.New("no signer to authorize the transaction with")
 	}
-	signedTx, err := opts.Signer(types.NewEIP155Signer(new(big.Int)), opts.From, rawTx)
+	signedTx, err := opts.Signer(types.NewEIP155Signer(new(big.Int).SetInt64(configs.ChainId)), opts.From, rawTx)
 	if err != nil {
 		return nil, err
 	}
