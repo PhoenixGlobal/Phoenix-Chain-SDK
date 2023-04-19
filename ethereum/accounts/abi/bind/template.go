@@ -74,10 +74,10 @@ import (
 	"strings"
 
 	phoenixchain "github.com/PhoenixGlobal/Phoenix-Chain-SDK"
-	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/accounts/abi"
-	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/accounts/abi/bind"
+	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/ethereum/accounts/abi"
+	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/ethereum/accounts/abi/bind"
 	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/libs/common"
-	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/core/types"
+	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/ethereum/core/types"
 	"github.com/PhoenixGlobal/Phoenix-Chain-SDK/libs/event"
 )
 
