@@ -8,29 +8,6 @@ import (
 	"strings"
 )
 
-// ConvertType converts an interface of a runtime type into a interface of the
-// given type
-// e.g. turn
-// var fields []reflect.StructField
-// fields = append(fields, reflect.StructField{
-// 		Name: "X",
-//		Type: reflect.TypeOf(new(big.Int)),
-//		Tag:  reflect.StructTag("json:\"" + "x" + "\""),
-// }
-// into
-// type TupleT struct { X *big.Int }
-func ConvertType(in interface{}, proto interface{}) interface{} {
-	protoType := reflect.TypeOf(proto)
-	if reflect.TypeOf(in).ConvertibleTo(protoType) {
-		return reflect.ValueOf(in).Convert(protoType).Interface()
-	}
-	// Use set as a last ditch effort
-	if err := set(reflect.ValueOf(proto), reflect.ValueOf(in)); err != nil {
-		panic(err)
-	}
-	return proto
-}
-
 // indirect recursively dereferences the value until it either gets the value
 // or finds a big.Int
 func indirect(v reflect.Value) reflect.Value {
@@ -83,7 +60,7 @@ func mustArrayToByteSlice(value reflect.Value) reflect.Value {
 func set(dst, src reflect.Value) error {
 	dstType, srcType := dst.Type(), src.Type()
 	switch {
-	case dstType.Kind() == reflect.Interface && dst.Elem().IsValid() && (dst.Elem().Type().Kind() == reflect.Ptr || dst.Elem().CanSet()):
+	case dstType.Kind() == reflect.Interface && dst.Elem().IsValid():
 		return set(dst.Elem(), src)
 	case dstType.Kind() == reflect.Ptr && dstType.Elem() != reflect.TypeOf(big.Int{}):
 		return set(dst.Elem(), src)
