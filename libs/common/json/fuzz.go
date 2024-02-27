@@ -3,7 +3,8 @@
 // license that can be found in the LICENSE file.
 
 //go:build gofuzz
-// +build gofuzzpackage json
+// +build gofuzz
+package json
 
 import (
 	"fmt"

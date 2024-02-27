@@ -1,5 +1,6 @@
 //go:build !cgo && !windows
-// +build !cgo,!windowspackage rpc
+// +build !cgo,!windows
+package rpc
 
 var (
 	//  On Linux, sun_path is 108 bytes in size

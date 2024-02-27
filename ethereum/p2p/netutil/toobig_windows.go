@@ -1,4 +1,5 @@
-//+build windowspackage netutil
+//+build windows
+package netutil
 
 import (
 	"net"
