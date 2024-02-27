@@ -1,5 +1,6 @@
-// +build !cgo appenginepackage metrics
+// +build !cgo appengine
+package metrics
 
-func numCgoCall() int64 {
-	return 0
-}
+//func numCgoCall() int64 {
+//	return 0
+//}

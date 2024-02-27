@@ -1,4 +1,5 @@
-// +build windowspackage rpc
+// +build windows
+package rpc
 
 import (
 	"context"
